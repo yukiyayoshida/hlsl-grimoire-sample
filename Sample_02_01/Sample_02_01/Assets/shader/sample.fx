@@ -2,12 +2,14 @@
 struct VSInput
 {
     float4 pos : POSITION;
+    float3 color : COLOR; // 頂点からカラーのデータを引っ張ってくる
 };
 
 // 頂点シェーダーの出力
 struct VSOutput
 {
     float4 pos : SV_POSITION;
+    float3 color : COLOR; // カラーの情報も出力する
 };
 
 // 頂点シェーダー
@@ -16,18 +18,23 @@ struct VSOutput
 VSOutput VSMain(VSInput In)
 {
     VSOutput vsOut = (VSOutput)0;
-
-    // step-1 入力された頂点座標を出力データに代入する
-
-    // step-2 入力された頂点座標を2倍に拡大する
-
-    // step-3 入力されたX座標を1.5倍、Y座標を0.5倍にして出力
-
+    vsOut.pos = In.pos;
+    vsOut.color = In.color; // カラーの情報を出力する
     return vsOut;
 }
 
 // ピクセルシェーダー
 float4 PSMain(VSOutput vsOut) : SV_Target0
 {
-    return float4(1.0f, 0.0f, 0.0f, 1.0f);
+    // 赤色を出力している
+    return float4(1.0f, 0.0f , 0.0f, 1.0f);
+
+// step-1 三角形を青色にする
+
+// step-2 三角形を緑色にする
+
+// step-3 三角形を黄色にする
+
+// step-4 頂点シェーダーから受け取ったカラーを出力する
+
 }
